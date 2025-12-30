@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sleep_note/box_play.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -9,6 +10,8 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int _value =0;
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -25,15 +28,38 @@ class _HomePageState extends State<HomePage> {
         centerTitle: true,
       ),
 
-      body: Center(
-        child: Text(_value.toString(),style:  TextStyle(
-          fontSize: 40,
-          color: Theme.of(context).primaryColor
-        ),),
+      body: Stack(
+        children:[ Center(
+          child: Text(_value.toString(),style:  TextStyle(
+            fontSize: 40,
+            color: Theme.of(context).primaryColor
+          ),),
+        ),
+          Positioned(
+            top: 15,
+              right: 30,
+              child: TextButton(
+                style: TextButton.styleFrom(
+                  backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+
+                ),
+                  onPressed: (){
+                  Navigator.push(
+                      context,
+                    MaterialPageRoute(
+                        builder: (context) => BoxPlay()
+                    ),
+                  );
+                  },
+                  child: Text('Next Page')
+              )
+          )
+        ]
       ),
       floatingActionButton: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           FloatingActionButton(
+            heroTag: "btn1",
             onPressed: (){
               setState(() {
                 _value= _value-1;
@@ -42,6 +68,7 @@ class _HomePageState extends State<HomePage> {
             child: Icon(Icons.remove),
           ),
         FloatingActionButton(
+          heroTag: "btn2",
           onPressed: (){
             setState(() {
               _value++;
@@ -49,6 +76,7 @@ class _HomePageState extends State<HomePage> {
           },
           child: Icon(Icons.add),
         ),
+
       ],)
 
     );
