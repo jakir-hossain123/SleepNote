@@ -32,7 +32,17 @@ class _BoxPlayState extends State<BoxPlay> {
                   onPressed: () {
                  if (nameCont.text.trim().isEmpty || ageCont.text.trim().isEmpty){
                    ScaffoldMessenger.of(context).showSnackBar(
-                     SnackBar(content: Text('Please entre your Name and Age first'))
+                     SnackBar(content: Text('Please entre your Name and Age first !',
+                     textAlign: TextAlign.center,),
+                       behavior: SnackBarBehavior.floating,
+                       margin: EdgeInsets.only(
+                         bottom: MediaQuery.of(context).size.height / 3.8,
+                         left: 20,
+                         right: 20,
+                       ),
+                       duration: Duration(seconds: 2),
+                       backgroundColor: Colors.redAccent,
+                     )
                    );
                  }
                  else
@@ -65,6 +75,7 @@ class _BoxPlayState extends State<BoxPlay> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 18.0),
               child: TextField(
+                keyboardType:TextInputType.number,
                 controller: ageCont,
                 decoration: InputDecoration(
                     labelText: 'Input Age',
